@@ -8,7 +8,6 @@ const removeDups = (someArr) => someArr.filter((v,i) => someArr.indexOf(v) === i
 const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\u036f]/g,"")
 
 
-
 // Endpoints
 router.get('/', (req, res) => {
 
@@ -39,10 +38,6 @@ router.get('/', (req, res) => {
                 obj.normCity = normalizedCities[idx]
                 finalCities.push(obj)
             })
-            console.log(finalCities)
-
-            
-
             res.render('index', { finalCities })
         })
         .catch(err => console.log('Error:', err))

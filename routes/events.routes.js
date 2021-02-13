@@ -24,6 +24,20 @@ router.get('/:city', (req, res) => {
     .catch(err => console.log('Error:', err))
 })
 
+// Details
+
+router.get('/detalles/:_id', (req, res) => {
+    const _id = req.params._id
+    const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?id=${_id}&apikey=HdYZa33NpSQm7RcffP412uoFrL5obLRL`
+
+    axios.get(ticketmasterAPI)
+    .then(response => {
+        res.render('events/event-details', response.data._embedded.events[0])
+    })
+    .catch(err => console.log('Error:', err))
+
+})
+
 
 
 
