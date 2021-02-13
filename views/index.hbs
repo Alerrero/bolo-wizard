@@ -1,12 +1,16 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <form action="/" method="POST">
-<label for="city">Elige tu ciudad:</label>
-    <select name="park" class="form-control" id="park">
-            <option>Seleccionar</option>
-            {{#each uniqueCities}}
-              <option value="{{_id}}">{{this}}</option>
-            {{/each}}
+    <label for="city">Elige tu ciudad:</label>
+    <select name="city" class="form-control" id='city'>
+        <option>Seleccionar</option>
+
+        {{#each finalCities}}
+        
+        <option value="{{normCity}}">{{city}}</option>
+        
+        {{/each}}
+
+    </select>
     <button type="submit">Hola</button>
 </form>
-ç

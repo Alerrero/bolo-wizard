@@ -11,6 +11,7 @@ router.get('/:city', (req, res) => {
 
     const city = req.params.city
     const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=[${city}]&size=30&sort=date,asc&apikey=HdYZa33NpSQm7RcffP412uoFrL5obLRL`
+    
 
     axios.get(ticketmasterAPI)
     .then(response => {
