@@ -5,7 +5,7 @@ function initMap() {
 
     map = new google.maps.Map(
         document.querySelector('#event-map'),
-        { zoom: 10, center: { lat: 40.392499, lng: -3.698214 } }
+        { zoom: 15, center: { lat: 40.4637, lng: -3.7492 } }
     )
 }
 
@@ -26,4 +26,6 @@ function pinEvent(event) {
 
     let position = { lat: parseFloat(event._embedded.venues[0].location.latitude), lng: parseFloat(event._embedded.venues[0].location.longitude) }
     new google.maps.Marker({ position, title: event.name, map })
+    map.setCenter(position, 10)
+
 }
