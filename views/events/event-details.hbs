@@ -6,5 +6,10 @@
     <li>{{dates.start.localDate}}</li>
     <li>{{_embedded.venues.[0].name}}</li>
     <li><img src="{{images.[0].url}}" alt=""></li>
-</ul>
 
+</ul>
+<figure id="event-map"></figure>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/javascripts/map-config.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL85Aun0K58V1YhjUtm0fryvRoBHNUREE&callback=initMap"></script>
