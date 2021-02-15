@@ -16,7 +16,6 @@ router.get('/:city', (req, res) => {
     axios.get(ticketmasterAPI)
     .then(response => {
 
-
         const eventsObj = response.data._embedded.events
         res.render('events/index', { eventsObj })
 
