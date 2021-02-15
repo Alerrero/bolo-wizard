@@ -1,7 +1,19 @@
 const express = require('express')
+const axios = require('axios').default
 const router = express.Router()
 
-const axios = require('axios').default
+const SpotifyWebApi = require('spotify-web-api-node')
+//TODO al env
+var spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFYID,
+    clientSecret: process.env.SPOTIFYSECRET,
+    redirectUri: 'http://www.example.com/callback'
+  });
+spotifyApi
+  .clientCredentialsGrant()
+  .then(data => spotifyApi.setAccessToken(data.body['access_token']))
+  .catch(error => console.log('Something went wrong when retrieving an access token', error));
+
 
 
 
@@ -10,8 +22,9 @@ const axios = require('axios').default
 router.get('/:city', (req, res) => {
 
     const city = req.params.city
-    const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=[${city}]&size=30&sort=date,asc&apikey=HdYZa33NpSQm7RcffP412uoFrL5obLRL`
-    
+    //TODO cosnt ticketMasterHandler = axios.create()
+    const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=[${city}]&size=30&sort=date,asc&apikey=${process.env.TMKEY}`
+    //TODO al env
 
     axios.get(ticketmasterAPI)
     .then(response => {
@@ -27,11 +40,24 @@ router.get('/:city', (req, res) => {
 
 router.get('/detalles/:_id', (req, res) => {
     const _id = req.params._id
-    const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?id=${_id}&apikey=HdYZa33NpSQm7RcffP412uoFrL5obLRL`
-
+    const ticketmasterAPI = `https://app.ticketmaster.com/discovery/v2/events.json?id=${_id}&apikey=${process.env.TMKEY}`
+    //TODO al env
     axios.get(ticketmasterAPI)
     .then(response => {
-        res.render('events/event-details', response.data._embedded.events[0])
+        const event = response.data._embedded.events[0]
+        const artistName = event._embedded.attractions[0].name
+
+        spotifyApi.searchArtists(artistName)
+        .then((data) => {
+            const artist = data.body.artists.items[0]
+            const artistID = artist.id
+            spotifyApi.getArtistTopTracks(artistID, 'ES')
+            .then (artistTracks => {
+                const tracks = artistTracks.body.tracks
+                res.render('events/event-details', {event, tracks, artist})
+            })            
+        })
+        
     })
     .catch(err => console.log('Error:', err))
 
