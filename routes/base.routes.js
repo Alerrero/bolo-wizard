@@ -3,7 +3,7 @@ const router = express.Router()
 const axios = require('axios')
 
 const ticketmasterVenues = `https://app.ticketmaster.com/discovery/v2/venues.json?countryCode=ES&apikey=${process.env.TMKEY}`
-//TODO Key al env
+
 const removeDups = (someArr) => someArr.filter((v,i) => someArr.indexOf(v) === i)
 const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\u036f]/g,"")
 
@@ -13,31 +13,19 @@ router.get('/', (req, res) => {
 
     axios.get(ticketmasterVenues)
         .then(response => {
-            //TODO APROVECHAR MAP
             const venues = response.data._embedded.venues
-            const cities = []
-            const normalizedCities = []
-            const finalCities = []
 
-            //Haciendo Array solo con ciudades
-            venues.forEach(elm => {
-                cities.push(elm.city.name)
-            })
+            const cities = removeDups(venues.map(elm => elm.city.name).sort()) //Cities with no dups array
 
-            //Quitar duplicados
-            const uniqueCities = removeDups(cities).sort()
+            const normalizedCities = cities.map(elm => normalizeText(elm).toLowerCase()) //Normalized cities array
 
-            //Quitando caracteres especiales
-            uniqueCities.forEach(elm => {
-                normalizedCities.push(normalizeText(elm).toLowerCase())
-            })
-
-            uniqueCities.forEach ((elm, idx) => {
+            const finalCities = cities.map((elm, idx) => { //Array of objects w/ cities and normalizedCities
                 const obj = {}
                 obj.city = elm
                 obj.normCity = normalizedCities[idx]
-                finalCities.push(obj)
+                return obj
             })
+            
             res.render('index', { finalCities })
         })
         .catch(err => console.log('Error:', err))
