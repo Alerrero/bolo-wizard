@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport')
+const passport = require("passport");
+// const bcrypt = require("bcrypt")
+// const bcryptSalt = 10
 
 const Artist = require('../models/artist-model')
 
-// Endpoints
-router.get('/', (req, res) => res.render('index'))
 
 // User login
-router.get('/login', (res, req) => res.render('auth/login', {errorMsg: req.flash('error')}))
+router.get('/login', (req, res) => res.render('auth/login', {errorMsg: req.flash('error')}))
 
 router.post('/login', passport.authenticate("local", {
     successRedirect: "/",
@@ -18,18 +18,18 @@ router.post('/login', passport.authenticate("local", {
 }))
 
 // Registration
-router.get('/register', (req, res) => res.render('auth/register'))
+router.get('/signup', (req, res) => res.render('auth/signup'))
 
-router.post('/register', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
 
-    const { accountType, email, password, artisticName, firstName, lastName, musicURL } = req.body
+    const { artistType, email, password, artisticName, firstName, lastName, musicURL } = req.body
 
     Artist
         .findOne({ email })
         .then(user => {
             if (user) {
                 console.log('email:', email)
-                res.render('auth/register', { errorMsg: "Email already registered"})
+                res.render('auth/signup', { errorMsg: "Email already registered"})
                 return
             }
 
@@ -37,9 +37,9 @@ router.post('/register', (req, res, next) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             Artist
-                .create({ accountType, email, password: hashPass, artisticName, firstName, lastName, musicURL })
+                .create({ artistType, email, password: hashPass, artisticName, firstName, lastName, musicURL })
                 .then(() => res.redirect("/"))
-                .catch(() => res.render('auth/register', {errorMsg: 'Server error'}))
+                .catch(() => res.render('auth/signup', {errorMsg: 'Server error'}))
         })
         .catch(error => next(new Error(error)))
 

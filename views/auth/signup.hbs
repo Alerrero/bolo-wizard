@@ -1,0 +1,31 @@
+<h2>Sign up !</h2>
+    <form action="/signup" method="POST">
+        <div>
+            <label for="artisticName">Nombre artístico</label>
+            <input type="text" id="artisticName" name="artisticName">
+        </div>
+
+        <div>
+            <label for="artistType">Musician or band?</label>
+            <select name="artistType" id="artistType">
+                <option value="MUSICIAN">MUSICIAN</option>
+                <option value="BAND">BAND</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <button type="submit">Sign up !</button><br>
+    </form>
+
+{{#if errorMsg}}
+<div>{{ errorMsg }}</div>
+{{/if}}

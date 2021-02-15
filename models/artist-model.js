@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const artistSchema = new Schema({
-    accountType: {
+    artistType: {
         type: String,
-        enum: ["Musician", "Band"],
+        enum: ["MUSICIAN", "BAND"],
         required: true
     },
     email: {
@@ -16,14 +16,6 @@ const artistSchema = new Schema({
         required: true
     },
     artisticName: {
-        type: String,
-        required: true
-    },
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
         type: String,
         required: true
     },
