@@ -15,10 +15,10 @@ router.get('/profile', checkLoggedIn, (req, res) => res.render('user-pages/profi
 router.get('/my-event', (req, res) => res.render('events/my-event'))
 
 router.post('/my-event', (req, res) => {
-    const { title, date, time, place, location, img } = req.body
+    const { title, date, place, location, img } = req.body
 
     Event
-        .create({ title, date, time, place, location, img })
+        .create({ title, date, place, location, img })
         .then(event => res.redirect('/profile'))
         .catch(err => console.log(err))
 })

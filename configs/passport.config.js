@@ -28,14 +28,14 @@ module.exports = app => {
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
 
         Artist
-            .findOne({ email: username }, (err, user) => {
+            .findOne({ 'userInfo.email' : username }, (err, user) => {
             if (err) {
                 return next(err);
             }
             if (!user) {
                 return next(null, false, { message: "Incorrect email" });
             }
-            if (!bcrypt.compareSync(password, user.password)) {
+            if (!bcrypt.compareSync( password, user.userInfo.password)) {
                 return next(null, false, { message: "Incorrect password" });
             }
 
