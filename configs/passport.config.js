@@ -4,7 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash")
 
-const Artist = require("./../models/artist-model");
+const Artist = require("../models/artist.model");
 
 module.exports = app => {
     app.use(session({
@@ -26,6 +26,7 @@ module.exports = app => {
     app.use(flash())
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+
         Artist
             .findOne({ email: username }, (err, user) => {
             if (err) {

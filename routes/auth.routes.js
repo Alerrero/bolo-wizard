@@ -4,7 +4,7 @@ const passport = require("passport");
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
-const Artist = require('../models/artist-model')
+const Artist = require('../models/artist.model')
 
 
 // User login

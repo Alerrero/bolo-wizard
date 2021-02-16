@@ -26,9 +26,9 @@ const eventSchema = new Schema({
         coordinates: [Number]
     },
     img: String,
-    artist: [{
+    artist: {
         type: Schema.Types.ObjectId, ref: 'Artist'
-    }]
+    }
 }, {
     timestamps: true
 })

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const adminSchema = new Schema({
-    username: {
+const userSchema = new Schema({
+    email: {
         type: String,
         unique: true,
         required: true
@@ -13,12 +13,15 @@ const adminSchema = new Schema({
     },
     role: {
         type: String,
-        default: "ADMIN"
+        enum: ["ADMIN", "ARTIST"],
+        default: "ARTIST"
     }
 }, {
     timestamps: true
 })
 
-const Admin = mongoose.model("Admin", artistSchema);
 
-module.exports = Admin;
+const User = mongoose.model("User", userSchema);
+
+exports.userSchema = userSchema;
+exports.userModel = User;

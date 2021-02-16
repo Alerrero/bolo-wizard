@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Event = require('../models/events-model')
+const Event = require('../models/events.model')
 const { checkLoggedIn, checkRole } = require('./../middleware')
 const { isAdmin } = require('../utils')
 

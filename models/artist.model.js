@@ -1,18 +1,12 @@
 const mongoose = require('mongoose');
+const { userSchema } = require('./user.model');
 const Schema = mongoose.Schema
 
 const artistSchema = new Schema({
+    userInfo: userSchema,
     artistType: {
         type: String,
         enum: ["MUSICIAN", "BAND"],
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
         required: true
     },
     artisticName: {
@@ -22,10 +16,11 @@ const artistSchema = new Schema({
     musicURL: {
         type: String,
     },
-    role: {
-        type: String,
-        default: "ARTIST"
-    }
+    approve: {
+        type: Boolean,
+        default: false
+    },
+
 }, {
   timestamps: true
 }
@@ -33,4 +28,4 @@ const artistSchema = new Schema({
 
 const Artist = mongoose.model("Artist", artistSchema);
 
-module.exports = Artist;
+module.exports = Artist
