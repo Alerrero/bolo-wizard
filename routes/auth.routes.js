@@ -4,6 +4,7 @@ const passport = require("passport");
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
+const { User } = require('../models/user.model')
 const Artist = require('../models/artist.model')
 
 
@@ -21,23 +22,21 @@ router.post('/login', passport.authenticate("local", {
 router.get('/signup', (req, res) => res.render('auth/signup'))
 
 router.post('/signup', (req, res, next) => {
-
     const { artistType, email, password, artisticName } = req.body
 
-    Artist
+    User
         .findOne({ email })
         .then(user => {
             if (user) {
-                console.log('email:', email)
                 res.render('auth/signup', { errorMsg: "Email already registered"})
                 return
             }
 
             const salt = bcrypt.genSaltSync(bcryptSalt)
             const hashPass = bcrypt.hashSync(password, salt)
-
+        
             Artist
-                .create({ artistType, email, password: hashPass, artisticName })
+                .create({ artistType, userInfo: { email, password: hashPass }, artisticName })
                 .then(() => res.redirect("/"))
                 .catch(() => res.render('auth/signup', {errorMsg: 'Server error'}))
         })

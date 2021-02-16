@@ -1,1 +1,33 @@
 <h1>New event</h1>
+<form action="/login" method="POST">
+    <div>
+        <label for="title">Title</label>
+        <input type="title" id="title" name="title">
+    </div>
+
+    <div>
+        <label for="date">Date of event</label>
+        <input type="date" id="date" name="date">
+    </div>
+
+    <div>
+        <label for="place">Where is your event?</label>
+        <input type="text" id="place" name="place">
+    </div>
+
+    <div>
+        <label for="location">Help us locate your event in our map !</label>
+        <input type="number" id="location" name="location">
+    </div>
+
+    <div>
+        <label for="img">Does your event have a promotional photo or image? Give us the URL !</label>
+        <input type="text" id="img" name="img">
+    </div>
+
+    <button type="submit">Create event</button>
+</form>
+
+{{#if errorMsg}}
+<div class="error-message">{{ errorMsg }}</div>
+{{/if}}
