@@ -2,16 +2,16 @@ const express = require('express')
 const router = express.Router()
 
 const Event = require('../models/events.model')
-const { checkLoggedIn, checkRole } = require('./../middleware')
+const { checkLoggedIn, checkAdmin, checkArtist } = require('./../middleware')
 const { isAdmin } = require('../utils')
 const { isArtist } = require('../utils')
 const Artist = require('../models/artist.model')
 
 // Admin page
-router.get('/admin-page', checkLoggedIn, checkRole('ADMIN'), (req, res) => res.render('user-pages/admin-page'))
+router.get('/admin-page', checkLoggedIn, checkAdmin, (req, res) => res.render('user-pages/admin-page'))
 
 // Profile
-router.get('/profile', checkLoggedIn, (req, res) => res.render('user-pages/profile', { user: req.user, isAdmin: isAdmin(req.user) }))
+router.get('/profile', checkLoggedIn, checkArtist, (req, res) => res.render('user-pages/profile', { user: req.user }))
 
 // Edit profile
 router.get('/edit/:user_id', (req, res) => {
@@ -25,7 +25,7 @@ router.get('/edit/:user_id', (req, res) => {
 })
 
 // New event
-router.get('/my-event', checkLoggedIn, checkRole(['ARTIST']), (req, res, next) => res.render('user-pages/my-event'))
+router.get('/my-event', checkLoggedIn, checkArtist, (req, res, next) => res.render('user-pages/my-event'))
 
 router.post('/my-event', (req, res) => {
     const { title, date, place, location, img } = req.body
