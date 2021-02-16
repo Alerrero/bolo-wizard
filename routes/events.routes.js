@@ -17,6 +17,8 @@ spotifyApi
 const ticketmasterHandler = new TicketmasterAPI()
 const googleplacesHandler = new googlePlacesAPI()
 
+const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\u036f]/g,"")
+
 // Events list
 
 router.get('/:city', (req, res) => {
@@ -38,9 +40,7 @@ router.get('/:city', (req, res) => {
 router.get('/detalles/:_id', (req, res) => {
 
     const _id = req.params._id
-    let event
-    let artist
-    let tracks
+    let event, artist, tracks
 
     ticketmasterHandler.getEvent(_id)
     .then(response => {
@@ -57,7 +57,7 @@ router.get('/detalles/:_id', (req, res) => {
     })
     .then (artistTracks => {
         tracks = artistTracks.body.tracks
-        const venue = event._embedded.venues[0].name
+        const venue = normalizeText(event._embedded.venues[0].name)
         const city = event._embedded.venues[0].city.name
         
         return googleplacesHandler.getPlace(venue, city)
