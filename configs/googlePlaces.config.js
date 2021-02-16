@@ -10,6 +10,7 @@ class googlePlacesAPI {
     getPlace (venue, city) {
         return this.api.get(`/findplacefromtext/json?input=${venue}%20${city}&inputtype=textquery&fields=photos,formatted_address,name,rating&key=${process.env.MAPSKEY}`
     )}
+    
     getPhoto (photoRef) {
         return this.api.get(`/photo?photoreference=${photoRef}&key=${process.env.MAPSKEY}`)
     }
