@@ -1,2 +1,4 @@
-<h1>This is my Artist profile</h1>
-<a href="/new-event">Crea un nuevo evento</a>
+<h1>This is my Artist profile {{user.artisticName}}</h1>
+<p>My email: {{user.userInfo.email}}</p>
+<a href="/user/my-event">Crea un nuevo evento</a> |
+<a href="/user/{{user.id}}">Edita tu perfil</a>
