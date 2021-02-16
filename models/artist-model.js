@@ -21,7 +21,6 @@ const artistSchema = new Schema({
     },
     musicURL: {
         type: String,
-        required: true
     },
     role: {
         type: String,

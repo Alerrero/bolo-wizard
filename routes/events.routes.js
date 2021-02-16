@@ -62,6 +62,4 @@ router.get('/detalles/:_id', (req, res) => {
 })
 
 
-
-
 module.exports = router

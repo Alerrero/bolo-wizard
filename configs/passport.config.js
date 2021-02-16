@@ -16,7 +16,8 @@ module.exports = app => {
     passport.serializeUser((user, cb) => { cb(null, user._id); })
 
     passport.deserializeUser((id, cb) => {
-        Artist.findById(id, (err, user) => {
+        Artist
+            .findById(id, (err, user) => {
             if (err) { return cb(err); }
             cb(null, user);
         });
@@ -26,12 +27,12 @@ module.exports = app => {
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
         Artist
-            .findOne({ username }, (err, user) => {
+            .findOne({ email: username }, (err, user) => {
             if (err) {
                 return next(err);
             }
             if (!user) {
-                return next(null, false, { message: "Incorrect username" });
+                return next(null, false, { message: "Incorrect email" });
             }
             if (!bcrypt.compareSync(password, user.password)) {
                 return next(null, false, { message: "Incorrect password" });

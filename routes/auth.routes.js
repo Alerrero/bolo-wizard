@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("passport");
-// const bcrypt = require("bcrypt")
-// const bcryptSalt = 10
+const bcrypt = require("bcrypt")
+const bcryptSalt = 10
 
 const Artist = require('../models/artist-model')
 
@@ -22,7 +22,7 @@ router.get('/signup', (req, res) => res.render('auth/signup'))
 
 router.post('/signup', (req, res, next) => {
 
-    const { artistType, email, password, artisticName, firstName, lastName, musicURL } = req.body
+    const { artistType, email, password, artisticName } = req.body
 
     Artist
         .findOne({ email })
@@ -37,7 +37,7 @@ router.post('/signup', (req, res, next) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             Artist
-                .create({ artistType, email, password: hashPass, artisticName, firstName, lastName, musicURL })
+                .create({ artistType, email, password: hashPass, artisticName })
                 .then(() => res.redirect("/"))
                 .catch(() => res.render('auth/signup', {errorMsg: 'Server error'}))
         })
