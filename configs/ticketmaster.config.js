@@ -7,14 +7,14 @@ class TicketmasterAPI {
         })
     }
 
-    getAllEvents (city, key) {
-        return this.api.get(`/events.json?classificationName=music&city=[${city}]&size=30&sort=date,asc&apikey=${key}`
+    getAllEvents (city) {
+        return this.api.get(`/events.json?classificationName=music&city=[${city}]&size=30&sort=date,asc&apikey=${process.env.TMKEY}`
     )}
-    getAllVenues (key) {
-        return this.api.get(`/venues.json?countryCode=ES&apikey=${key}`)
+    getAllVenues () {
+        return this.api.get(`/venues.json?countryCode=ES&apikey=${process.env.TMKEY}`)
     }
-    getEvent (id, key) {
-        return this.api.get(`/events.json?id=${id}&apikey=${key}`)
+    getEvent (id) {
+        return this.api.get(`/events.json?id=${id}&apikey=${process.env.TMKEY}`)
     }
 
 }

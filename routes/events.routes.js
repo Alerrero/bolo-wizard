@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const TicketmasterAPI = require('../configs/ticketmaster.config')
+const googlePlacesAPI = require('../configs/googlePlaces.config')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 var spotifyApi = new SpotifyWebApi({
@@ -14,6 +15,7 @@ spotifyApi
   .catch(error => console.log('Something went wrong when retrieving an access token', error));
 
 const ticketmasterHandler = new TicketmasterAPI()
+const googleplacesHandler = new googlePlacesAPI()
 
 // Events list
 
@@ -21,7 +23,7 @@ router.get('/:city', (req, res) => {
 
     const city = req.params.city
 
-    ticketmasterHandler.getAllEvents(city, process.env.TMKEY)
+    ticketmasterHandler.getAllEvents(city)
     .then(response => {
 
         const eventsObj = response.data._embedded.events
@@ -38,8 +40,9 @@ router.get('/detalles/:_id', (req, res) => {
     const _id = req.params._id
     let event
     let artist
+    let tracks
 
-    ticketmasterHandler.getEvent(_id, process.env.TMKEY)
+    ticketmasterHandler.getEvent(_id)
     .then(response => {
         event = response.data._embedded.events[0]
         const artistName = event._embedded.attractions[0].name
@@ -53,10 +56,17 @@ router.get('/detalles/:_id', (req, res) => {
               
     })
     .then (artistTracks => {
-        const tracks = artistTracks.body.tracks
-        res.render('events/event-details', {event, tracks, artist})
-
-    })      
+        tracks = artistTracks.body.tracks
+        const venue = event._embedded.venues[0].name
+        const city = event._embedded.venues[0].city.name
+        
+        return googleplacesHandler.getPlace(venue, city)
+    }) 
+    .then (eventPlace => {
+        const place = eventPlace.data.candidates[0]
+        console.log(place.formatted_address)
+        res.render('events/event-details', {event, tracks, artist, place})
+    })     
     .catch(err => console.log('Error:', err))
 
 })

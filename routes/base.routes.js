@@ -11,7 +11,7 @@ const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\
 // Endpoints
 router.get('/', (req, res) => {
 
-    ticketmasterHandler.getAllVenues(process.env.TMKEY)
+    ticketmasterHandler.getAllVenues()
         .then(response => {
             const venues = response.data._embedded.venues
             const cities = removeDups(venues.map(elm => elm.city.name).sort())                      //Cities with no dups array
