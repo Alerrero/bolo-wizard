@@ -11,7 +11,7 @@ function initMap() {
 
 
 function getDirections() {
-    const _id= window.location.pathname.slice(17)
+    const _id= window.location.pathname.slice(18)
     axios
         .get(`https://app.ticketmaster.com/discovery/v2/events.json?id=${_id}&apikey=HdYZa33NpSQm7RcffP412uoFrL5obLRL`)
         .then(response => pinEvent(response.data._embedded.events[0]))

@@ -1,5 +1,5 @@
 <h1>Nuevo evento</h1>
-<form action="/user/my-event" method="POST">
+<form action="/usuario/mi-evento" method="POST">
     <div>
         <label for="title">Título del evento</label>
         <input type="title" id="title" name="title">
@@ -21,8 +21,13 @@
     </div>
 
     <div>
-        <label for="location">¡Ayúdanos a ubicar tu evento en el mapa!</label>
-        <input type="number" id="location" name="location">
+        <label for="latitude">Longitud</label>
+        <input type="number" id="latitude" name="latitude" step="any">
+    </div>
+
+    <div>
+        <label for="longitude">Latitud</label>
+        <input type="number" id="longitude" name="longitude" step="any">
         <small>Para ubicar el evento, entra a google maps y con el click derecho te aparecerán las coordenadas de Latitud y Longitud.</small>
     </div>
 
@@ -33,6 +38,7 @@
 
     <button type="submit">Create event</button>
 </form>
+<a href="/usuario/perfil">Regresar a perfil</a>
 
 {{#if errorMsg}}
 <div class="error-message">{{ errorMsg }}</div>

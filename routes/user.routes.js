@@ -6,7 +6,6 @@ const { checkLoggedIn, checkAdmin, checkArtist, checkApproved } = require('./../
 const { isAdmin } = require('../utils')
 const { isArtist } = require('../utils')
 const Artist = require('../models/artist.model')
-const { User } = require('../models/user.model')
 
 // Admin page
 router.get('/admin-page', checkLoggedIn, checkAdmin, (req, res) => {
@@ -20,7 +19,7 @@ router.post('/admin-page/update/:id', (req, res) => {
     const approved = {approve: true}
     Artist
         .findByIdAndUpdate(artistID, approved)
-        .then(() => res.redirect('/user/admin-page'))
+        .then(() => res.redirect('/usuario/admin-page'))
         .catch(err => console.log(err))
 
 })
@@ -30,16 +29,16 @@ router.post('/admin-page/delete/:id', (req, res) => {
 
     Artist
         .findByIdAndRemove(artistID)
-        .then(() => res.redirect('/user/admin-page'))
+        .then(() => res.redirect('/usuario/admin-page'))
         .catch(err => console.log(err))
         
 })
 
 // Profile
-router.get('/profile', checkLoggedIn, checkArtist, checkApproved, (req, res) => res.render('user-pages/profile', { user: req.user }))
+router.get('/perfil', checkLoggedIn, checkArtist, checkApproved, (req, res) => res.render('user-pages/profile', { user: req.user }))
 
 // Edit profile
-router.get('/edit/:user_id', (req, res) => {
+router.get('/editar/:user_id', (req, res) => {
     
     const user_id = req.params.user_id
 
@@ -49,25 +48,26 @@ router.get('/edit/:user_id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/edit/:user_id', (req, res) => {
+router.post('/editar/:user_id', (req, res) => {
     const { artisticName, genre, img, spotifyURL, youtubeChannel, facebookPage, description } = req.body
     const user_id = req.params.user_id
 
     Artist
         .findByIdAndUpdate(user_id, { artisticName, genre, img, spotifyURL, youtubeChannel, facebookPage, description })
-        .then(user => res.redirect('/user/profile'))
+        .then(() => res.redirect('/usuario/perfil'))
         .catch(err => console.log(err))
 })
 
 // New event
-router.get('/my-event', checkLoggedIn, checkArtist, checkApproved, (req, res, next) => res.render('user-pages/my-event'))
+router.get('/mi-evento', checkLoggedIn, checkArtist, checkApproved, (req, res, next) => res.render('user-pages/my-event'))
 
-router.post('/my-event', (req, res) => {
-    const { title, date, place, location, img } = req.body
+router.post('/mi-evento', (req, res) => {
+    const { title, date, place, latitude, longitude, img, city } = req.body
+    const location = {type: 'Point', coordinates: [latitude, longitude]}
 
     Event
-        .create({ title, date, place, location, img })
-        .then(event => res.redirect('/user/profile'))
+        .create({ title, date, place, location, img, city })
+        .then(() => res.redirect('/usuario/perfil'))
         .catch(err => console.log(err))
 })
 

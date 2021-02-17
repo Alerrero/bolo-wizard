@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 })
 router.post('/', (req, res) => {
     const city = req.body.city
-    res.redirect(`/events/${city}`)
+    res.redirect(`/eventos/${city}`)
 })
 
 module.exports = router

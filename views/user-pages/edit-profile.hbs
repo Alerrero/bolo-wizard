@@ -1,6 +1,6 @@
 <h1>Edita tu perfil {{artisticName}}</h1>
 
-<form action="/user/edit/{{id}}" method="POST">
+<form action="/usuario/editar/{{id}}" method="POST">
     <div>
         <label for="artisticName">Nombre de artista / banda</label>
         <input type="text" name="artisticName" id="artisticName" value="{{artisticName}}">
@@ -32,4 +32,4 @@
 
     <button type="submit">Guardar cambios</button>
 </form>
-<a href="/user/profile">Regresar a perfil</a>
+<a href="/usuario/perfil">Regresar a perfil</a>
