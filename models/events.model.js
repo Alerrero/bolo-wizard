@@ -23,11 +23,17 @@ const eventSchema = new Schema({
     },
     city: {
         type: String,
-        required: true
+        required: true,
+        collation: {
+            locale: 'es',
+            strength: 1,
+            caseLevel: false
+        }
     },
     img: String,
     artist: {
-        type: Schema.Types.ObjectId, ref: 'Artist'
+        type: Schema.Types.ObjectId,
+        ref: 'Artist'
     }
 }, {
     timestamps: true
