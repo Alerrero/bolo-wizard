@@ -2,7 +2,7 @@ body {
   padding: 50px;
   font-family: sans-serif; }
 
-#map, #event-map {
+#map, #event-map, #local-map {
   height: 400px;
   background-color: #7777cf; }
 

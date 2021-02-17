@@ -1,12 +1,18 @@
-
+<h1>Eventos de nuestros artistas locales</h1>
+<div>
 {{#each localEvents}}
-    <p>EVENTO LOCAL: {{title}}</p>
+    <p>{{title}}</p>
+    <a href="/eventos/locales-detalles/{{id}}">Detalles evento</a>
 {{/each}}
+</div>
 
+<h1>Otros eventos</h1>
+<div>
 {{#each eventsObj}}
     <p>{{name}}</p>
     <a href="/eventos/detalles/{{id}}">Detalles evento</a>
 {{/each}}
+</div>
 
 <a href="/">Regresar a inicio</a>
 

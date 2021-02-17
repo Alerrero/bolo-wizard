@@ -1,0 +1,25 @@
+<h4>Detalles evento</h4>
+<ul>
+    <li>{{localEvent.title}}</li>
+    <li>{{localEvent.date}}</li>
+    <li>{{localEvent.place}}</li>
+    <li><img src="{{localEvent.img}}"></li>
+</ul>
+
+{{#each tracks}}
+{{#if preview_url}}
+<h4>{{name}}</h4>
+<audio src="{{preview_url}}" controls></audio>
+{{/if}}
+{{/each}}
+
+<a href="{{localEvent.artist.spotifyURL}}" target="_blank">Link</a>
+
+<a href="{{localEvent.artist.youtubeChannel}}">Youtube Channel Link</a>
+
+<figure id="local-map"></figure>
+<p>{{place.formatted_address}}</p>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/javascripts/local-map-config.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{mapsKey}}&callback=initMap"></script>
