@@ -11,5 +11,13 @@
     </ul>
 </article>
 
+{{#each events}}
+<p>{{title}}</p>
+<a href="/usuario/mi-evento/editar/{{id}}">Editar</a>
+<form action="/usuario/mi-evento/eliminar/{{id}}" method="POST">
+    <button type="submit">Eliminar</button>
+</form>
+{{/each}}
+
 <a href="/usuario/mi-evento">Crea un nuevo evento</a> |
 <a href="/usuario/editar/{{user.id}}">Edita tu perfil</a>

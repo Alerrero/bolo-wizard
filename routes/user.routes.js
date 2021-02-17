@@ -35,10 +35,18 @@ router.post('/admin-page/delete/:id', (req, res) => {
 })
 
 // Profile
-router.get('/perfil', checkLoggedIn, checkArtist, checkApproved, (req, res) => res.render('user-pages/profile', { user: req.user }))
+router.get('/perfil', checkLoggedIn, checkArtist, checkApproved, (req, res) => {
+
+    Event
+        .find({artist: req.user._id})
+        .then(artistEvents => {
+            res.render('user-pages/profile', { user: req.user, events: artistEvents })
+        })
+    
+})
 
 // Edit profile
-router.get('/editar/:user_id', (req, res) => {
+router.get('/editar/:user_id', checkLoggedIn, checkArtist, checkApproved, (req, res) => {
     
     const user_id = req.params.user_id
 
@@ -73,6 +81,45 @@ router.post('/mi-evento', (req, res) => {
 })
 
 // Edit event
+router.get('/mi-evento/editar/:id', checkLoggedIn, checkArtist, checkApproved, (req, res) => {
+    const eventID = req.params.id
+
+    Event
+        .findById(eventID)
+        .then(event => {
+            const day = event.date.getDate(), 
+            month = ('0' + (event.date.getMonth() + 1)).slice(-2), 
+            year = event.date.getFullYear(), 
+            hour = (event.date.getHours() + 1), 
+            minute = (event.date.getMinutes() + 1) ,
+            formattedDate = `${year}-${month}-${day}T${hour}:${minute}`
+            console.log(formattedDate)
+            res.render('user-pages/my-event-edit', {event, trueDate: formattedDate})
+        })
+        .catch(err => console.log(err))
+
+})
+
+router.post('/mi-evento/editar/:id', (req, res) => {
+    const eventID = req.params.id
+    const {title, date, city, place, latitude, longitude, img} = req.body
+    const location = {type: 'Point', coordinates: [latitude, longitude]}
+
+    Event  
+        .findByIdAndUpdate(eventID, {title, date, city, place, location, img})
+        .then(() => res.redirect('/usuario/perfil'))
+        .catch(err => console.log(err))
+
+})
+
+router.post('/mi-evento/eliminar/:id', (req, res) => {
+    const eventID = req.params.id
+
+    Event
+        .findByIdAndRemove(eventID)
+        .then(() => res.redirect('/usuario/perfil'))
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router
