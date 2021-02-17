@@ -44,10 +44,8 @@ router.get('/:city', (req, res) => {
                         eventsObj,
                         localEvents
                     })
-        
                 })
         })
-
         .catch(err => console.log('Error:', err))
 })
 
@@ -95,8 +93,48 @@ router.get('/detalles/:_id', (req, res, next) => {
             })
         })
         .catch(err => console.log('Error:', err))
-
 })
+
+//Local events details
+router.get('/locales-detalles/:_id', (req, res, next) => {
+
+    const _id = req.params._id
+    let artist, tracks, localEvent
+
+
+    Event
+        .findById(_id)
+        .populate('artist')
+        .then(event => {
+            localEvent = event
+            return spotifyApi.searchArtists(localEvent.artist.artisticName)            
+        })
+        .then( data => {
+            artist = data.body.artists.items[0]
+            if (artist) {
+                const artistID = artist.id
+                return spotifyApi.getArtistTopTracks(artistID, 'ES')
+            } else { null }
+        })
+        .then(artistTracks => {
+            if (artistTracks) { tracks = artistTracks.body.tracks }
+            const venue = normalizeText(localEvent.place)
+            const city = localEvent.city
+            return googleplacesHandler.getPlace(venue, city)
+        })
+        .then(eventPlace => {
+            const place = eventPlace.data.candidates[0]
+
+            res.render('events/local-events-details', {
+                localEvent,
+                artist,
+                tracks,
+                place
+            })
+        })
+
+        .catch(err => console.log('Error:', err))
+        })
 
 
 module.exports = router
