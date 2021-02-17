@@ -1,4 +1,4 @@
-# Project 2 - [Name pending]
+# Bolo Wizard
 
 Spain's music events.
 

@@ -15,6 +15,10 @@ spotifyApi
     .then(data => spotifyApi.setAccessToken(data.body['access_token']))
     .catch(error => console.log('Something went wrong when retrieving an access token', error));
 
+const Event = require('../models/events.model')
+const Artist = require('../models/artist.model')
+
+
 const ticketmasterHandler = new TicketmasterAPI()
 const googleplacesHandler = new googlePlacesAPI()
 
@@ -25,17 +29,25 @@ const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\
 router.get('/:city', (req, res) => {
 
     const city = req.params.city
+    
+    const reg = new RegExp(`^${city}$`,`i`)
 
-    ticketmasterHandler.getAllEvents(city)
-        .then(response => {
-
-            const eventsObj = response.data._embedded.events
-            res.render('events/index', {
-                eventsObj,
-                //localEvents
-            })
-
+    Event
+        .find({ city: reg })
+        .then(localEvents => {
+            console.log(reg)
+            ticketmasterHandler.getAllEvents(city)
+                .then(response => {
+        
+                    const eventsObj = response.data._embedded.events
+                    res.render('events/index', {
+                        eventsObj,
+                        localEvents
+                    })
+        
+                })
         })
+
         .catch(err => console.log('Error:', err))
 })
 

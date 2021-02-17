@@ -66,8 +66,9 @@ router.post('/mi-evento', (req, res) => {
     const location = {type: 'Point', coordinates: [latitude, longitude]}
 
     Event
-        .create({ title, date, place, location, img, city })
-        .then(() => res.redirect('/usuario/perfil'))
+        .create({ title, date, place, location, img, city, artist: req.user._id })
+        .then(() => {
+            res.redirect('/usuario/perfil')})
         .catch(err => console.log(err))
 })
 
