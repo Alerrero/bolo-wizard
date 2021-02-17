@@ -1,4 +1,15 @@
-<h1>This is my Artist profile {{user.artisticName}}</h1>
-<p>My email: {{user.userInfo.email}}</p>
+<h1>Perfil de {{user.artisticName}}</h1>
+<img src="{{user.img}}" alt="{{user.artisticName}}">
+
+<article class="about-me">
+    <ul>
+        <li>Género: {{user.genre}}</li>
+        <li>Descripción: {{user.description}}</li>
+        <li>Mi Spotify: {{user.spotifyURL}}</li>
+        <li>Mi Youtube Channel: {{user.youtubeChannel}}</li>
+        <li>Mi página de Facebook: {{user.facebookPage}} </li>
+    </ul>
+</article>
+
 <a href="/user/my-event">Crea un nuevo evento</a> |
-<a href="/user/{{user.id}}">Edita tu perfil</a>
+<a href="/user/edit/{{user.id}}">Edita tu perfil</a>

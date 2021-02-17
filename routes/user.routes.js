@@ -6,6 +6,7 @@ const { checkLoggedIn, checkAdmin, checkArtist } = require('./../middleware')
 const { isAdmin } = require('../utils')
 const { isArtist } = require('../utils')
 const Artist = require('../models/artist.model')
+const { User } = require('../models/user.model')
 
 // Admin page
 router.get('/admin-page', checkLoggedIn, checkAdmin, (req, res) => res.render('user-pages/admin-page'))
@@ -21,6 +22,16 @@ router.get('/edit/:user_id', (req, res) => {
     Artist
         .findById(user_id)
         .then(user => res.render('user-pages/edit-profile', user))
+        .catch(err => console.log(err))
+})
+
+router.post('/edit/:user_id', (req, res) => {
+    const { artisticName, genre, img, spotifyURL, youtubeChannel, facebookPage, description } = req.body
+    const user_id = req.params.user_id
+
+    Artist
+        .findByIdAndUpdate(user_id, { artisticName, genre, img, spotifyURL, youtubeChannel, facebookPage, description })
+        .then(user => res.redirect('/user/profile'))
         .catch(err => console.log(err))
 })
 

@@ -13,14 +13,18 @@ const artistSchema = new Schema({
         type: String,
         required: true
     },
-    musicURL: {
+    spotifyURL: {
         type: String,
     },
     approve: {
         type: Boolean,
         default: false
     },
-
+    genre: String,
+    img: String,
+    facebookPage: String,
+    youtubeChannel: String,
+    description: String
 }, {
   timestamps: true
 }

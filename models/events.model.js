@@ -21,6 +21,7 @@ const eventSchema = new Schema({
         },
         coordinates: [Number]
     },
+    city: String,
     img: String,
     artist: {
         type: Schema.Types.ObjectId, ref: 'Artist'
