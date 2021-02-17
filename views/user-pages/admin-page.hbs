@@ -1,1 +1,13 @@
 <h1>Admin page</h1>
+
+{{#each artists}}
+<h4>{{artisticName}}</h4>
+<p>{{artistType}}</p>
+<p>{{approve}}</p>
+<form action="/user/admin-page/update/{{id}}" method="POST">
+    <button type="submit">Approve</button>
+</form>
+<form action="/user/admin-page/delete/{{id}}" method="POST">
+    <button type="submit">Decline</button>
+</form>
+{{/each}}

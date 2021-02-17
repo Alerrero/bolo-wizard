@@ -18,7 +18,8 @@ const artistSchema = new Schema({
     },
     approve: {
         type: Boolean,
-        default: false
+        default: false,
+        required:true
     },
     genre: String,
     img: String,

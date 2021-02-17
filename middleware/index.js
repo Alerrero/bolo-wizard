@@ -3,7 +3,7 @@ module.exports = {
     
     checkAdmin: (req, res, next) => req.user && req.user.role === 'ADMIN' ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, no eres Admin' }),
 
-    checkArtist: (req, res, next) => req.user.userInfo && req.user.userInfo.role === 'ARTIST' ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, no eres Artist' })
+    checkArtist: (req, res, next) => req.user.userInfo && req.user.userInfo.role === 'ARTIST' ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, no eres Artist' }),
 
-    // checkVerified: verified => (req, res, next) => verified.includes(req.user.verified)
+    checkApproved: (req, res, next) => req.user.approve ? next() : res.render('auth/login', { errorMsg: 'Tu cuenta todavia no ha sido aprobada' })
 }
