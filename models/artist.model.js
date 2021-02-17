@@ -28,7 +28,8 @@ const artistSchema = new Schema({
     description: String
 }, {
   timestamps: true
-}
+},
+{collation: {strength: 1}}
 );
 
 const Artist = mongoose.model("Artist", artistSchema);

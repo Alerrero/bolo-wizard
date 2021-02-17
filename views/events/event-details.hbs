@@ -10,8 +10,10 @@
 </ul>
 
 {{#each tracks}}
+{{#if preview_url}}
 <h4>{{name}}</h4>
 <audio src="{{preview_url}}" controls></audio>
+{{/if}}
 {{/each}}
 
 <a href="{{artist.external_urls.spotify}}">Link</a>
