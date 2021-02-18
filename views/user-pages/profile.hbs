@@ -1,23 +1,46 @@
-<h1>Perfil de {{user.artisticName}}</h1>
-<img src="{{user.img}}" alt="{{user.artisticName}}">
+<div class="container">
 
-<article class="about-me">
-    <ul>
-        <li>Género: {{user.genre}}</li>
-        <li>Descripción: {{user.description}}</li>
-        <li>Mi Spotify: {{user.spotifyURL}}</li>
-        <li>Mi Youtube Channel: {{user.youtubeChannel}}</li>
-        <li>Mi página de Facebook: {{user.facebookPage}} </li>
-    </ul>
-</article>
+    <div class="row">
 
-{{#each events}}
-<p>{{title}}</p>
-<a href="/usuario/mi-evento/editar/{{id}}">Editar</a>
-<form action="/usuario/mi-evento/eliminar/{{id}}" method="POST">
-    <button type="submit">Eliminar</button>
-</form>
-{{/each}}
+        <div class="col-md-7">
 
-<a href="/usuario/mi-evento">Crea un nuevo evento</a> |
-<a href="/usuario/editar/{{user.id}}">Edita tu perfil</a>
+            <img class="profile-img" src="{{user.img}}" alt="{{user.artisticName}}">
+            <h2>{{user.artisticName}}</h2>
+            <a class="btn btn-dark mb-2" href="/usuario/editar/{{user.id}}">Edita tu perfil</a>
+            <article class="about-me">
+            
+                <p><strong>Género:</strong> {{user.genre}}</p>
+                <p><strong>Descripción:</strong>  {{user.description}}</p>
+                <div class="social-media-icons">
+                    <a href="{{user.spotifyURL}}"><img src="" alt="Spotify icon"></a>
+                    <a href="{{user.youtubeChannel}}"><img src="../images/youtube.png" alt="Youtube icon"></a>
+                    <a href="{{user.facebookPage}} "><img src="" alt="Facebook icon"></a>
+                </div>
+            
+            </article>
+
+        </div>
+
+        <div class="col-md-5 profile-events-container">
+            <h3>Tus eventos</h3>
+            <a class="btn btn-dark mb-2" href="/usuario/mi-evento">Crea un nuevo evento</a>
+            {{#each events}}
+            <article class="my-event-container">
+
+                <hr>
+                <h5>{{title}}</h5>
+                <p>{{date}}</p>
+                <div class="my-event-btn">
+                    <a href="/usuario/mi-evento/editar/{{id}}" class="btn btn-outline-dark">Editar</a>
+                    <form action="/usuario/mi-evento/eliminar/{{id}}" method="POST">
+                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                    </form>
+                </div>
+
+            </article>
+            {{/each}}
+        </div>
+
+    </div>
+
+</div>
