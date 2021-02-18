@@ -1,35 +1,47 @@
-<h1>Edita tu perfil {{artisticName}}</h1>
+<div class="container form-margin">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="profile-data">
+                <img class="my-event-profile-img" src="{{img}}" alt="{{artisticName}}">
+                <h3>Edita tu perfil</h3>
+            </div>
 
-<form action="/usuario/editar/{{id}}" method="POST">
-    <div>
-        <label for="artisticName">Nombre de artista / banda</label>
-        <input type="text" name="artisticName" id="artisticName" value="{{artisticName}}">
-    </div>
-    <div>
-        <label for="genre">Género musical</label>
-        <input type="text" name="genre" id="genre" value="{{genre}}">
-    </div>
-    <div>
-        <label for="img">Imagen de perfil</label>
-        <input type="text" name="img" id="img" value="{{img}}">
-    </div>
-    <div>
-        <label for="spotifyURL">Perfil de artista de Spotify</label>
-        <input type="text" name="spotifyURL" id="spotifyURL" value="{{spotifyURL}}">
-    </div>
-    <div>
-        <label for="youtubeChannel">Canal de youtube</label>
-        <input type="text" name="youtubeChannel" id="youtubeChannel" value="{{youtubeChannel}}">
-    </div>
-    <div>
-        <label for="facebookPage">Página de facebook</label>
-        <input type="text" name="facebookPage" id="facebookPage" value="{{facebookPage}}">
-    </div>
-    <div>
-        <label for="description">Descripción de artista</label>
-        <input type="text" name="description" id="description" value="{{description}}">
-    </div>
+            <form action="/usuario/editar/{{id}}" method="POST">
+                <div class="form-group">
+                    <label for="artisticName">Nombre de artista / banda</label>
+                    <input type="text" name="artisticName" id="artisticName" value="{{artisticName}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="genre">Género musical</label>
+                    <input type="text" name="genre" id="genre" value="{{genre}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="img">Imagen de perfil</label>
+                    <input type="text" name="img" id="img" value="{{img}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="spotifyURL">Perfil de artista de Spotify</label>
+                    <input type="text" name="spotifyURL" id="spotifyURL" value="{{spotifyURL}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="youtubeChannel">Canal de youtube</label>
+                    <input type="text" name="youtubeChannel" id="youtubeChannel" value="{{youtubeChannel}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="facebookPage">Página de facebook</label>
+                    <input type="text" name="facebookPage" id="facebookPage" value="{{facebookPage}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción de artista</label>
+                    <input type="text" name="description" id="description" value="{{description}}" class="form-control">
+                </div>
 
-    <button type="submit">Guardar cambios</button>
-</form>
-<a href="/usuario/perfil">Regresar a perfil</a>
+                <button type="submit" class="my-event-btn btn btn-dark btn-block">Guardar cambios</button>
+            </form>
+            <a href="/usuario/perfil" class="my-event-btn btn btn-outline-dark">Regresar a perfil</a>
+
+        </div>
+    </div>
+</div>
+
+
