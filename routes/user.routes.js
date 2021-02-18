@@ -67,7 +67,14 @@ router.post('/editar/:user_id', (req, res) => {
 })
 
 // New event
-router.get('/mi-evento', checkLoggedIn, checkArtist, checkApproved, (req, res, next) => res.render('user-pages/my-event'))
+router.get('/mi-evento', checkLoggedIn, checkArtist, checkApproved, (req, res, next) => {
+
+    Artist
+        .find({artist: req.user._id})
+        .then(artistInfo => {
+            res.render('user-pages/my-event', { user: req.user })
+        })
+})
 
 router.post('/mi-evento', (req, res) => {
     const { title, date, place, latitude, longitude, img, city } = req.body
