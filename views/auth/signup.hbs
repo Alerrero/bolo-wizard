@@ -1,30 +1,36 @@
-<h2>Sign up !</h2>
-    <form action="/registro" method="POST">
-        <div>
-            <label for="artisticName">Nombre artístico</label>
-            <input type="text" id="artisticName" name="artisticName">
-        </div>
 
-        <div>
-            <label for="artistType">Musician or band?</label>
-            <select name="artistType" id="artistType">
-                <option value="MUSICIAN">MUSICIAN</option>
-                <option value="BAND">BAND</option>
-            </select>
+<div class="container form-margin">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h2>Registro</h2>
+            <form  action="/registro" method="POST">
+                <div class="form-group">
+                    <label for="artisticName">Nombre artístico</label>
+                    <input type="text" name="artisticName" class="form-control" id="artisticName"
+                        placeholder="Popino y su banda">
+                </div>
+                <div class="form-group">
+                    <label for="artistType">¿Músico o banda?</label>
+                    <select name="artistType" id="artistType" class="form-control">
+                        <option value="MUSICIAN">Musico</option>
+                        <option value="BAND">Banda</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tu email con nadie ;)</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Registrase</button>
+            </form>
         </div>
-
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-        </div>
-
-        <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-        </div>
-
-        <button type="submit">Sign up !</button><br>
-    </form>
+    </div>
+</div>
 
 {{#if errorMsg}}
 <div>{{ errorMsg }}</div>

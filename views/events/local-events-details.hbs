@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-xs-12 col-md-7 local-event-page">
+    <div class="col-xs-12 col-md-7 event-page">
         <div class="container">
             <div class="row artist-info justify-content-center">
-                <div class="col-6">
+                <div class="col-xs-12 col-md-6">
                     <img src="{{localEvent.img}}" alt="Event img">
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-md-6">
                     <h4 class="text-center">{{localEvent.title}}</h4>
                     <p><span>Fecha</span>: {{localEvent.date}}</p>
                     <p><span>Sala/Local</span>: {{localEvent.place}}</p>
@@ -17,10 +17,32 @@
         </div>
     </div>
 
-    <div class="col-xs-12 col-md-5 tracks-preview tm-event-page">
+    <div class="col-xs-12 col-md-5 tracks-preview event-page">
         <div class="container">
             <div class="row flex-column align-items-center">
-                <img src="{{localEvent.artist.img}}" alt="Artist img">
+                <img class="artist-img" src="{{localEvent.artist.img}}" alt="Artist img">
+                <h5>{{localEvent.artist.name}}</h5>
+                <p>{{localEvent.artist.description}}</p>
+                {{#each tracks}}
+                {{#if preview_url}}
+                <h6>{{name}}</h6>
+                <audio class="track" src="{{preview_url}}" controls></audio>
+                {{/if}}
+                {{/each}}
+
+                <h5>Links:</h5>
+                {{#if localEvent.artist.facebookPage}}
+                <a href="{{localEvent.artist.facebookPage}}"><img src="/images/facebook-logo.png"
+                        alt="Facebook logo"></a>
+                {{/if}}
+                {{#if localEvent.artist.spotifyURL}}
+                <a href="{{localEvent.artist.facebookPage}}"><img src="/images/spotify-logo.png" alt="Spotify logo"></a>
+                {{/if}}
+                {{#if localEvent.artist.youtubeChannel}}
+                <a href="{{localEvent.artist.youtubeChannel}}"><img src="/images/youtube-logo.png"
+                        alt="Youtube logo"></a>
+                {{/if}}
+
             </div>
         </div>
     </div>
@@ -32,19 +54,7 @@
 
 
 
-{{#each tracks}}
-{{#if preview_url}}
-<h4>{{name}}</h4>
-<audio src="{{preview_url}}" controls></audio>
-{{/if}}
-{{/each}}
 
-<a href="{{localEvent.artist.spotifyURL}}" target="_blank">Link</a>
-
-<a href="{{localEvent.artist.youtubeChannel}}">Youtube Channel Link</a>
-
-<figure id="local-map"></figure>
-<p>{{place.formatted_address}}</p>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/javascripts/local-map-config.js"></script>

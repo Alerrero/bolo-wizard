@@ -41,13 +41,18 @@ router.get('/:city', (req, res) => {
                 
         })
         .then(response => {
-        
-            const eventsObj = response.data._embedded.events
+            let eventsObj
+            if (response.data._embedded === undefined) {eventsObj = null}
+            else{
+                eventsObj = response.data._embedded.events
+                
+                }
             res.render('events/index', {
                 eventsObj,
                 localEvents: local,
                 city: city
             })
+            
         })
         .catch(err => console.log('Error:', err))
 })
@@ -62,9 +67,6 @@ router.post('/:city', (req, res) => {
     const monthFirstDate = new Date (currentYear, parseInt(month) - 1, 1, 1)
     const monthLastDate = new Date (currentYear, parseInt(month), 0, 1)
     const lastDay = monthLastDate.getDate()
-    
-    console.log(monthFirstDate.getMonth(), monthFirstDate.getDate())
-    console.log(monthLastDate.getMonth(), monthLastDate.getDate())
 
     let local
 
@@ -78,12 +80,14 @@ router.post('/:city', (req, res) => {
             return ticketmasterHandler.getMonthEvents(month, currentYear,lastDay, city)
         })
         .then(response => {
-            const eventsObj = response.data._embedded.events
-            res.render('events/index', {
-                eventsObj,
-                localEvents: local,
-                city: city
-            })
+            if (response.data._embedded === undefined) {res.redirect(`/eventos/${city}`)}
+            else {const eventsObj = response.data._embedded.events
+                res.render('events/index', {
+                    eventsObj,
+                    localEvents: local,
+                    city: city
+                })}
+            
         })
         .catch(err => console.log('Error:', err))
 })
@@ -145,17 +149,6 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
         .populate('artist')
         .then(event => {
             localEvent = event
-            return spotifyApi.searchArtists(localEvent.artist.artisticName)            
-        })
-        .then( data => {
-            artist = data.body.artists.items[0]
-            if (artist) {
-                const artistID = artist.id
-                return spotifyApi.getArtistTopTracks(artistID, 'ES')
-            } else { null }
-        })
-        .then(artistTracks => {
-            if (artistTracks) { tracks = artistTracks.body.tracks }
             const venue = normalizeText(localEvent.place)
             const city = localEvent.city
             return googleplacesHandler.getPlace(venue, city)
@@ -165,8 +158,6 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
 
             res.render('events/local-events-details', {
                 localEvent,
-                artist,
-                tracks,
                 place
             })
         })

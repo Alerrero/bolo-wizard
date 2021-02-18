@@ -7,12 +7,15 @@ h1 {
   margin-bottom: 30px;
   color: black; }
 
-h4 {
+h2, h4, h5 {
   margin-bottom: 30px;
   font-family: 'Roboto', sans-serif; }
 
 body {
   font-family: 'Source Sans Pro', sans-serif; }
+
+p {
+  margin-bottom: 3px; }
 
 .nav-bar-img {
   width: 50px;
@@ -21,22 +24,31 @@ body {
 .index-logo {
   width: 50%; }
 
-.tm-event-page {
+.event-card {
+  margin: 10px;
+  padding: 10px;
+  border: black 1px solid;
+  border-radius: 5px; }
+
+.marker-logo {
+  width: 20px; }
+
+.event-page {
   padding-top: 50px; }
 
-.tm-event-page p span {
+.event-page p span {
   font-weight: 600; }
 
 .artist-info {
   margin-bottom: 50px; }
 
-.tm-event-page a img {
+.event-page a img {
   width: 50px; }
 
-.tm-event-page audio {
+.event-page audio {
   margin-bottom: 20px; }
 
-.tm-event-page h6 {
+.event-page h6 {
   text-align: start; }
 
 .tracks-preview {
@@ -47,6 +59,14 @@ body {
 .track {
   width: 75%;
   height: 30px; }
+
+.artist-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; }
+
+.form-margin {
+  padding-top: 50px; }
 
 #map, #event-map, #local-map {
   height: 400px;

@@ -1,3 +1,5 @@
+<div class="container">
+
 <form action="/eventos/{{city}}" method="POST">
     <select name="month" id="month">
         <option value="">Elige un mes</option>
@@ -17,23 +19,34 @@
     <button type="submit">filtrar</button>
 </form>
 
-<h1>Eventos de nuestros artistas locales</h1>
-<div>
+{{#if localEvents.[0]}}
+<h2>Eventos de nuestros artistas locales</h2>
+{{/if}}
+<div class="row justify-content-center">    
 {{#each localEvents}}
-    <p>{{title}}</p>
-    <a href="/eventos/locales-detalles/{{id}}">Detalles evento</a>
+    <div class="col-xs-12 col-md-4 event-card local-card align-self-center"">
+        <h5>{{title}}</h5>
+        <p><img class="marker-logo" src="/images/marker-logo.png" alt="Marker logo">   {{city}}</p>
+        <a href="/eventos/locales-detalles/{{id}}">Detalles evento</a>
+    </div>
 {{/each}}
 </div>
 
-<h1>Otros eventos</h1>
-<div>
+{{#if eventsObj.[0]}}
+<h2>Otros eventos</h2>
+{{/if}}
+<div class="row justify-content-center tm-card">
 {{#each eventsObj}}
-    <p>{{name}}</p>
-    <a href="/eventos/detalles/{{id}}">Detalles evento</a>
+    <div class="col-xs-12 col-4 event-card">
+        <h5>{{name}}</h5>
+        <a href="/eventos/detalles/{{id}}">Detalles evento</a>
+    </div>
 {{/each}}
 </div>
 
 <a href="/">Regresar a inicio</a>
+
+</div>
 
   {{!-- ESTE ES EL BOTON BACK TO TOP --}}
   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
