@@ -1,23 +1,28 @@
 <div class="container">
 
-    <form action="/eventos/{{city}}" method="POST">
-        <select name="month" id="month">
-            <option value="">Elige un mes</option>
-            <option value="01">Enero</option>
-            <option value="02">Febrero</option>
-            <option value="03">Marzo</option>
-            <option value="04">Abril</option>
-            <option value="05">Mayo</option>
-            <option value="06">Junio</option>
-            <option value="07">Julio</option>
-            <option value="08">Agosto</option>
-            <option value="09">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
-        </select>
-        <button type="submit">filtrar</button>
-    </form>
+    <div class="month-searchbar">    
+        <form class="form-inline" action="/eventos/{{city}}" method="POST">
+            <div class="form-group mx-sm-3 mb-2 text-center">
+                <label for="month" class="sr-only">Month</label>
+                <select name="month" id="month" class="form-control">
+                    <option value="">Elige un mes</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-dark mb-2">Filtrar</button>
+        </form>
+    </div>
 
     {{#if localEvents.[0]}}
     <h2>Eventos de nuestros artistas locales</h2>
@@ -57,12 +62,71 @@
         {{/each}}
     </div>
 
-    <a href="/">Regresar a inicio</a>
-
 </div>
 
 {{!-- ESTE ES EL BOTON BACK TO TOP --}}
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Subir</button>
 
+
+<footer class="bg-dark text-light text-center text-md-left">
+	<div class="container">
+		<div class="row pt-4">
+			{{!-- <div class="col-sm-6 col-md-3 pb-4">
+				<h4 class="mb-4">
+					Services
+				</h4>
+				<ul class="list-unstyled">
+					<li>
+						<a href="#" class="text-light">Web design</a>
+					</li>
+					<li>
+						<a href="#" class="text-light">Development</a>
+					</li>
+					<li>
+						<a href="#" class="text-light">Hosting</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-6 col-md-3 pb-4">
+				<h4 class="mb-4">
+					About
+				</h4>
+				<ul class="list-unstyled">
+					<li>
+						<a href="#" class="text-light">Company</a>
+					</li>
+					<li>
+						<a href="#" class="text-light">Team</a>
+					</li>
+					<li>
+						<a href="#" class="text-light">Careers</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6 pb-4">
+				<h4 class="mb-4">
+					Web development tools
+				</h4>
+				<ul class="list-unstyled">
+					<li>
+						<a href="https://www.phpcrudgenerator.com/tutorials/how-to-create-a-bootstrap-crud-admin-dashboard" class="text-light">How to create a Bootstrap Admin Dashboard in PHP</a>
+					</li>
+					<li>
+						<a href="https://www.phpformbuilder.pro/drag-n-drop-form-builder/index.html" class="text-light">Drag &amp; drop form builder</a>
+					</li>
+					<li>
+						<a href="https://www.tinymce-bootstrap-plugin.com/" class="text-light">Bootstrap plugin for TinyMce</a>
+					</li>
+				</ul>
+			</div> --}}
+		</div>
+		<div class="col d-flex justify-content-center mb-4">
+			<a href="#" class="d-block px-3"><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-facebook-m.png" alt="Facebook" /></a><a href="#" class="d-block px-3"><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-twitter-m.png" alt="Twitter" /></a><a href="#" class="d-block px-3"><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-instagram-m.png" alt="Instagram" /></a><a href="#" class="d-block px-3"><img src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-linkedin-m.png" alt="Linkedin" /></a>
+		</div>
+		<p class="text-center text-secondary border-top border-secondary py-4">
+			Bolo Wizard © 2021
+		</p>
+	</div>
+</footer>
 
 <script src="/javascripts/script.js"></script>
