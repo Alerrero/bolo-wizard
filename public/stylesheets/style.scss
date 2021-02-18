@@ -90,48 +90,94 @@ width: 50%
 }
 
 // ESTILOS VERO
+
+.profile {
+  margin-top: 30px;
+}
+
+.profile h2 {
+  font-size: 60px;
+}
+
+.about-me {
+  margin: 20px 0px;
+}
+
 .profile-img {
-  width: 350px;
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
 }
 
-.profile-events-container {
+.user-container {
   text-align: center;
   border-style: solid;
   border-color:  rgb(179, 179, 179);
   border-width: 1px;
   border-radius: 5px;
   padding: 18px 0px;
+  margin-bottom: 10px;
 }
 
-.profile-events-container h3 {
+.user-container h3 {
   margin-bottom: 20px;
+  font-size: 35px;
 }
 
-.my-event-container {
+.user-container-items {
   padding: 5px;
 }
 
-.my-event-container .my-event-btn {
+.user-container-items .my-event-btn {
   display: flex;
   justify-content: center;
 }
 
-.my-event-container a {
-  margin-right: 5px;
+.user-container-items button {
+  margin-left: 5px;
 }
 
-.my-event-container h5 {
+.user-container-items h5 {
   margin-bottom: 0px;
   margin-top: 10px;
 }
 
-.my-event-container p {
-  margin-bottom: 0px;
+.user-container-items p {
+  margin-bottom: 10px;
   color: rgb(133, 133, 133);
 }
 
 .social-media-icons {
-  width: 50px;
+  margin-top: 50px;
 }
 
+.spotify-color img {
+  width: 40px;
+  margin: 0 10px;
+}
+
+.youtube-logo img {
+  width: 82px;
+  margin: 0 10px;
+}
+
+.facebook-logo img {
+  margin: 0 10px;
+}
+
+.admin-page {
+  margin-top: 30px;
+}
+
+.admin-logo {
+  width: 25%
+}
+
+.admin-title-container {
+  margin: 10px 0px;
+}
+
+p {
+  margin: 3px;
+}
