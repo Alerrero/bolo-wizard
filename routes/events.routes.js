@@ -101,7 +101,6 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
     const _id = req.params._id
     let artist, tracks, localEvent
 
-
     Event
         .findById(_id)
         .populate('artist')
