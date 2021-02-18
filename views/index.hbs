@@ -1,18 +1,29 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<form action="/" method="POST">
-    <label for="city">Elige tu ciudad:</label>
-    <select name="city" class="form-control" id='city'>
-        <option>Seleccionar</option>
+<div class="container">
+    <div class="row justify-content-center text-center div-wrapper d-flex align-items-center">
+        <div class="col-md-8">
+            <img class="index-logo" src="images/bolo-wizard-logo-black.svg" alt="Logo">
+            <h1>{{title}}</h1>
+            <div class="row justify-content-center">
+            <form class="form-inline" action="/" method="POST">
 
-        {{#each finalCities}}
-        
-        <option value="{{normCity}}">{{city}}</option>
-        
-        {{/each}}
+                    <div class="form-group mx-sm-3 mb-2 text-center">
+                        <label for="city" class="sr-only">City</label>
+                        <select name="city" class="form-control" id='city'>
+                            <option>Elegir ciudad...</option>
 
+                            {{#each finalCities}}
 
-    </select>
-    <button type="submit">Hola</button>
-</form>
+                            <option value="{{normCity}}">{{city}}</option>
 
+                            {{/each}}
+
+                        </select>
+                    </div>
+            
+            <button type="submit" class="btn btn-dark mb-2">Buscar</button>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,6 +1,24 @@
-body {
-  padding: 50px;
-  font-family: sans-serif;
+img {
+  width: 100%;
+}
+
+h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 4.5em;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.navbar {
+  margin-bottom: 50px;
+}
+
+.nav-bar-img {
+  width: 50px
+}
+
+.index-logo {
+width: 50%
 }
 
 #map, #event-map, #local-map {

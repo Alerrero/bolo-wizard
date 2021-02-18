@@ -86,10 +86,7 @@ router.post('/:city', (req, res) => {
             })
         })
         .catch(err => console.log('Error:', err))
-
-
 })
-
 
 // Details
 
