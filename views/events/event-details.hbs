@@ -1,24 +1,56 @@
-<h4>Detalles evento</h4>
-<ul>
+<div class="row">
+    <div class="col-xs-12 col-md-7 tm-event-page">
+        <div class="container">
+            <div class="row artist-info justify-content-center">
+                <div class="col-6">
 
-    <li>{{event.name}}</li>
-    <li>{{event.dates.start.localDate}}</li>
-    <li>{{event._embedded.venues.[0].name}}</li>
-    <li><img src="{{event.images.[0].url}}" alt=""></li>
+                    <img src="{{event.images.[0].url}}" alt="Event img">
+                </div>
+                <div class="col-6">
+                    <h4 class="text-center">{{event._embedded.attractions.[0].name}}</h4>
+                    <p><span>Fecha</span>: {{event.dates.start.localDate}}</p>
+                    <p><span>Sala/Local</span>: {{event._embedded.venues.[0].name}}</p>
+                    <p><span>Hora</span>: {{event.dates.start.localTime}}</p>
+                    <p><span>Genero</span>: {{event.classifications.[0].genre.name}}</p>
+                    <a href="{{event.url}}">Comprar entrada</a>
 
-</ul>
+                </div>
+            </div>
+            <p><span>Dirección:</span> {{place.formatted_address}}</p>
 
-{{#each tracks}}
-{{#if preview_url}}
-<h4>{{name}}</h4>
-<audio src="{{preview_url}}" controls></audio>
-{{/if}}
-{{/each}}
+            <figure id="event-map"></figure>
 
-<a href="{{artist.external_urls.spotify}}" target="_blank">Link</a>
+        </div>
+    </div>
 
-<figure id="event-map"></figure>
-<p>{{place.formatted_address}}</p>
+
+
+
+    <div class="col-xs-12 col-md-5 tracks-preview tm-event-page">
+        <div class="container">
+            <div class="row flex-column align-items-center">
+
+                <h4>Preview canciones</h4>
+
+                {{#each tracks}}
+                {{#if preview_url}}
+                <h6>{{name}}</h6>
+                <audio class="track" src="{{preview_url}}" controls></audio>
+                {{/if}}
+                {{/each}}
+                <a class="d-block" href="{{artist.external_urls.spotify}}" target="_blank"><img
+                        src="/images/spotify-logo.png" alt="Spotify Logo"></a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/javascripts/tm-map-config.js"></script>

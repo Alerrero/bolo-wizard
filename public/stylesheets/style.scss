@@ -9,16 +9,57 @@ h1 {
   color: black;
 }
 
-.navbar {
-  margin-bottom: 50px;
+h4 {
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .nav-bar-img {
-  width: 50px
+  width: 50px;
+  margin: auto;
 }
 
 .index-logo {
 width: 50%
+}
+
+.tm-event-page {
+  padding-top: 50px
+}
+
+.tm-event-page p span {
+  font-weight: 600;
+}
+
+.artist-info {
+  margin-bottom: 50px;
+}
+
+.tm-event-page a img {
+  width: 50px;
+}
+
+.tm-event-page audio {
+  margin-bottom: 20px;
+}
+
+.tm-event-page h6 {
+  text-align: start;
+}
+
+.tracks-preview {
+  color: white;
+  background-color: black;
+  padding: 30px;
+}
+
+.track {
+  width: 75%;
+  height: 30px;
 }
 
 #map, #event-map, #local-map {

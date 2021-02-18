@@ -1,10 +1,36 @@
-<h4>Detalles evento</h4>
-<ul>
-    <li>{{localEvent.title}}</li>
-    <li>{{localEvent.date}}</li>
-    <li>{{localEvent.place}}</li>
-    <li><img src="{{localEvent.img}}"></li>
-</ul>
+<div class="row">
+    <div class="col-xs-12 col-md-7 local-event-page">
+        <div class="container">
+            <div class="row artist-info justify-content-center">
+                <div class="col-6">
+                    <img src="{{localEvent.img}}" alt="Event img">
+                </div>
+                <div class="col-6">
+                    <h4 class="text-center">{{localEvent.title}}</h4>
+                    <p><span>Fecha</span>: {{localEvent.date}}</p>
+                    <p><span>Sala/Local</span>: {{localEvent.place}}</p>
+                    <p><span>Genero</span>: {{localEvent.artist.genre}}</p>
+                </div>
+            </div>
+            <p><span>Dirección</span>: {{place.formatted_address}}</p>
+            <figure id="local-map"></figure>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-5 tracks-preview tm-event-page">
+        <div class="container">
+            <div class="row flex-column align-items-center">
+                <img src="{{localEvent.artist.img}}" alt="Artist img">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 {{#each tracks}}
 {{#if preview_url}}
