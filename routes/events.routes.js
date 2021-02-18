@@ -22,12 +22,13 @@ const Artist = require('../models/artist.model')
 const ticketmasterHandler = new TicketmasterAPI()
 const googleplacesHandler = new googlePlacesAPI()
 
-const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+const { normalizeText } = require('../utils')
 
 // Events list
 
 router.get('/:city', (req, res) => {
 
+    let local
     const city = req.params.city
     
     const reg = new RegExp(`^${city}$`,`i`)
@@ -35,19 +36,60 @@ router.get('/:city', (req, res) => {
     Event
         .find({ city: reg })
         .then(localEvents => {
-            console.log(reg)
-            ticketmasterHandler.getAllEvents(city)
-                .then(response => {
+            local = localEvents
+            return ticketmasterHandler.getAllEvents(city)
+                
+        })
+        .then(response => {
         
-                    const eventsObj = response.data._embedded.events
-                    res.render('events/index', {
-                        eventsObj,
-                        localEvents
-                    })
-                })
+            const eventsObj = response.data._embedded.events
+            res.render('events/index', {
+                eventsObj,
+                localEvents: local,
+                city: city
+            })
         })
         .catch(err => console.log('Error:', err))
 })
+
+router.post('/:city', (req, res) => {
+    
+    const city = req.params.city
+    const today = new Date()
+    const currentYear = today.getFullYear()
+    const month = req.body.month
+    
+    const monthFirstDate = new Date (currentYear, parseInt(month) - 1, 1, 1)
+    const monthLastDate = new Date (currentYear, parseInt(month), 0, 1)
+    const lastDay = monthLastDate.getDate()
+    
+    console.log(monthFirstDate.getMonth(), monthFirstDate.getDate())
+    console.log(monthLastDate.getMonth(), monthLastDate.getDate())
+
+    let local
+
+    const reg = new RegExp(`^${city}$`,`i`)
+
+
+    Event
+        .find({$and: [{city: reg, date: {$gt: monthFirstDate, $lt: monthLastDate}}]})
+        .then(localEvents => {
+            local = localEvents
+            return ticketmasterHandler.getMonthEvents(month, currentYear,lastDay, city)
+        })
+        .then(response => {
+            const eventsObj = response.data._embedded.events
+            res.render('events/index', {
+                eventsObj,
+                localEvents: local,
+                city: city
+            })
+        })
+        .catch(err => console.log('Error:', err))
+
+
+})
+
 
 // Details
 

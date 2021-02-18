@@ -5,8 +5,8 @@ const Event = require('../models/events.model')
 
 const ticketmasterHandler = new TicketmasterAPI()
 
-const removeDups = (someArr) => someArr.filter((v, i) => someArr.indexOf(v) === i)
-const normalizeText = (someStrg) => someStrg.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+const { removeDups, normalizeText } = require('../utils')
+
 
 
 // Endpoints

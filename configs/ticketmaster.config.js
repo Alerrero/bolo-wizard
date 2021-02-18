@@ -16,6 +16,9 @@ class TicketmasterAPI {
     getEvent (id) {
         return this.api.get(`/events.json?id=${id}&apikey=${process.env.TMKEY}`)
     }
+    getMonthEvents (month, year, day, city) {
+        return this.api.get(`/events.json?classificationName=music&city=[${city}]&startDateTime=${year}-${month}-01T08:00:00Z&endDateTime=${year}-${month}-${day}T00:00:00Z&size=30&sort=date,asc&apikey=${process.env.TMKEY}`)
+    }
 
 }
 
