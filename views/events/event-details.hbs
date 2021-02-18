@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row stretch">
     <div class="col-xs-12 col-md-7 event-page">
         <div class="container">
             <div class="row artist-info justify-content-center">
@@ -10,6 +10,7 @@
                     <h4 class="text-center">{{event._embedded.attractions.[0].name}}</h4>
                     <p><span>Fecha</span>: {{event.dates.start.localDate}}</p>
                     <p><span>Sala/Local</span>: {{event._embedded.venues.[0].name}}</p>
+                    <p><span>Ciudad</span>: {{event._embedded.venues.[0].city.name}}</p>
                     <p><span>Hora</span>: {{event.dates.start.localTime}}</p>
                     <p><span>Genero</span>: {{event.classifications.[0].genre.name}}</p>
                     <a href="{{event.url}}">Comprar entrada</a>
@@ -19,6 +20,8 @@
             <p><span>Dirección:</span> {{place.formatted_address}}</p>
 
             <figure id="event-map"></figure>
+
+            <a class="btn btn-outline-dark" href="/eventos/{{normCity}}">Regresar</a>
 
         </div>
     </div>

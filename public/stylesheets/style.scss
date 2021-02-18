@@ -27,6 +27,10 @@ p {
   margin: auto;
 }
 
+.index-page {
+  margin-top: 15vh;
+}
+
 .index-logo {
 width: 50%
 }
@@ -34,12 +38,29 @@ width: 50%
 .event-card {
   margin: 10px;
   padding: 10px;
-  border: black 1px solid;
+  border: rgb(224, 224, 224) 1px solid;
   border-radius: 5px;
+  background-color: rgb(247, 247, 247);
+}
+
+.img-card {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-artist-name {
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .marker-logo {
 width: 20px;
+}
+
+.stretch {
+  height: 100vh;
 }
 
 .event-page {
@@ -81,6 +102,7 @@ width: 20px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .form-margin {

@@ -21,17 +21,34 @@ p {
   width: 50px;
   margin: auto; }
 
+.index-page {
+  margin-top: 15vh; }
+
 .index-logo {
   width: 50%; }
 
 .event-card {
   margin: 10px;
   padding: 10px;
-  border: black 1px solid;
-  border-radius: 5px; }
+  border: #e0e0e0 1px solid;
+  border-radius: 5px;
+  background-color: #f7f7f7; }
+
+.img-card {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%; }
+
+.card-artist-name {
+  font-weight: 600;
+  font-size: 1.2em; }
 
 .marker-logo {
   width: 20px; }
+
+.stretch {
+  height: 100vh; }
 
 .event-page {
   padding-top: 50px; }
@@ -63,7 +80,8 @@ p {
 .artist-img {
   width: 200px;
   height: 200px;
-  border-radius: 50%; }
+  border-radius: 50%;
+  object-fit: cover; }
 
 .form-margin {
   padding-top: 50px; }

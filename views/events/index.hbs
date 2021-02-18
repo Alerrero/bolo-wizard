@@ -1,56 +1,68 @@
 <div class="container">
 
-<form action="/eventos/{{city}}" method="POST">
-    <select name="month" id="month">
-        <option value="">Elige un mes</option>
-        <option value="01">Enero</option>
-        <option value="02">Febrero</option>
-        <option value="03">Marzo</option>
-        <option value="04">Abril</option>
-        <option value="05">Mayo</option>
-        <option value="06">Junio</option>
-        <option value="07">Julio</option>
-        <option value="08">Agosto</option>
-        <option value="09">Septiembre</option>
-        <option value="10">Octubre</option>
-        <option value="11">Noviembre</option>
-        <option value="12">Diciembre</option>
-    </select>
-    <button type="submit">filtrar</button>
-</form>
+    <form action="/eventos/{{city}}" method="POST">
+        <select name="month" id="month">
+            <option value="">Elige un mes</option>
+            <option value="01">Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03">Marzo</option>
+            <option value="04">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        <button type="submit">filtrar</button>
+    </form>
 
-{{#if localEvents.[0]}}
-<h2>Eventos de nuestros artistas locales</h2>
-{{/if}}
-<div class="row justify-content-center">    
-{{#each localEvents}}
-    <div class="col-xs-12 col-md-4 event-card local-card align-self-center"">
-        <h5>{{title}}</h5>
-        <p><img class="marker-logo" src="/images/marker-logo.png" alt="Marker logo">   {{city}}</p>
-        <a href="/eventos/locales-detalles/{{id}}">Detalles evento</a>
+    {{#if localEvents.[0]}}
+    <h2>Eventos de nuestros artistas locales</h2>
+    {{/if}}
+    <div class="row justify-content-center">
+        {{#each localEvents}}
+        <div class="col-xs-12 col-md-4 event-card local-card align-self-center">
+            <div class="row">
+                <div class="col-8 align-self-center">
+                    <h5>{{title}}</h5>
+                    <p class="card-artist-name">{{artist.artisticName}}</p>
+                    <p><img class="marker-logo" src="/images/marker-logo.png" alt="Marker logo"> {{city}}</p>
+                    <a href="/eventos/locales-detalles/{{id}}">Detalles evento</a>
+                </div>
+                {{#if artist.img}}
+                <div class="col-4 align-self-center">
+                    <img class="img-card" src="{{artist.img}}" alt="Artist img">
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        {{/each}}
     </div>
-{{/each}}
-</div>
 
-{{#if eventsObj.[0]}}
-<h2>Otros eventos</h2>
-{{/if}}
-<div class="row justify-content-center tm-card">
-{{#each eventsObj}}
-    <div class="col-xs-12 col-4 event-card">
-        <h5>{{name}}</h5>
-        <a href="/eventos/detalles/{{id}}">Detalles evento</a>
+    {{#if eventsObj.[0]}}
+    <h2>Otros eventos</h2>
+    {{/if}}
+    <div class="row justify-content-center tm-card">
+        {{#each eventsObj}}
+        <div class="col-xs-12 col-md-4 event-card">
+            <h5>{{name}}</h5>
+            <p>{{_embedded.attractions.[0].name}}</p>
+            <p><img class="marker-logo" src="/images/marker-logo.png" alt="Marker logo">
+                {{_embedded.venues.[0].city.name}}</p>
+            <a href="/eventos/detalles/{{id}}">Detalles evento</a>
+        </div>
+        {{/each}}
     </div>
-{{/each}}
-</div>
 
-<a href="/">Regresar a inicio</a>
+    <a href="/">Regresar a inicio</a>
 
 </div>
 
-  {{!-- ESTE ES EL BOTON BACK TO TOP --}}
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+{{!-- ESTE ES EL BOTON BACK TO TOP --}}
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 
-  <script src="/javascripts/script.js"></script>
-
+<script src="/javascripts/script.js"></script>

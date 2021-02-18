@@ -35,6 +35,7 @@ router.get('/:city', (req, res) => {
 
     Event
         .find({ city: reg })
+        .populate('artist')
         .then(localEvents => {
             local = localEvents
             return ticketmasterHandler.getAllEvents(city)
@@ -97,7 +98,7 @@ router.post('/:city', (req, res) => {
 router.get('/detalles/:_id', (req, res, next) => {
 
     const _id = req.params._id
-    let event, artist, tracks
+    let event, artist, tracks, normCity
 
     ticketmasterHandler.getEvent(_id)
         .then(response => {
@@ -123,6 +124,7 @@ router.get('/detalles/:_id', (req, res, next) => {
             }
             const venue = normalizeText(event._embedded.venues[0].name)
             const city = event._embedded.venues[0].city.name
+            normCity = normalizeText(city).toLowerCase()
             return googleplacesHandler.getPlace(venue, city)
         })
         .then(eventPlace => {
@@ -132,7 +134,8 @@ router.get('/detalles/:_id', (req, res, next) => {
                 event,
                 tracks,
                 artist,
-                place
+                place,
+                normCity
             })
         })
         .catch(err => console.log('Error:', err))
@@ -142,7 +145,7 @@ router.get('/detalles/:_id', (req, res, next) => {
 router.get('/locales-detalles/:_id', (req, res, next) => {
 
     const _id = req.params._id
-    let artist, tracks, localEvent
+    let artist, tracks, localEvent, normCity
 
     Event
         .findById(_id)
@@ -151,6 +154,7 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
             localEvent = event
             const venue = normalizeText(localEvent.place)
             const city = localEvent.city
+            normCity = normalizeText(city).toLowerCase()
             return googleplacesHandler.getPlace(venue, city)
         })
         .then(eventPlace => {
@@ -158,7 +162,8 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
 
             res.render('events/local-events-details', {
                 localEvent,
-                place
+                place,
+                normCity
             })
         })
 
