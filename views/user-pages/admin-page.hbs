@@ -1,13 +1,31 @@
-<h1>Admin page</h1>
 
-{{#each artists}}
-<h4>{{artisticName}}</h4>
-<p>{{artistType}}</p>
-<p>{{approve}}</p>
-<form action="/usuario/admin-page/update/{{id}}" method="POST">
-    <button type="submit">Approve</button>
-</form>
-<form action="/usuario/admin-page/delete/{{id}}" method="POST">
-    <button type="submit">Decline</button>
-</form>
-{{/each}}
+<div class="container">
+    <div class="row admin-page justify-content-center text-center div-wrapper d-flex align-items-center">
+        <div class="col-xs-12 col-md-7 user-container">
+            <h3>Solicitudes de registro</h3>
+            <div class="user-container-items">
+
+            {{#each artists}}
+                <hr>
+                <h5>{{artisticName}} - ({{artistType}})</h5>
+                <p>{{userInfo.email}}</p>
+                <div class="my-event-btn">
+                <form action="/usuario/admin-page/update/{{id}}" method="POST">
+                    <button type="submit" class="btn btn-outline-success">Approve</button>
+                </form>
+                <form action="/usuario/admin-page/delete/{{id}}" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">Decline</button>
+                </form>
+                </div>
+            {{/each}}
+
+            </div>
+        </div>
+
+        <div class="admin-title-container col-xs-12 col-md-5">
+            <img class="admin-logo" src="../images/bolo-wizard-logo-black.svg" alt="Logo">
+            <h2>Página de administración</h2>
+        </div>
+    </div>
+</div>
+

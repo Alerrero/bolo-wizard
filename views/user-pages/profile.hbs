@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container profile">
 
     <div class="row">
 
-        <div class="col-md-7">
+        <div class="col-xs-12 col-md-5">
 
             <img class="profile-img" src="{{user.img}}" alt="{{user.artisticName}}">
             <h2>{{user.artisticName}}</h2>
@@ -12,20 +12,20 @@
                 <p><strong>Género:</strong> {{user.genre}}</p>
                 <p><strong>Descripción:</strong>  {{user.description}}</p>
                 <div class="social-media-icons">
-                    <a href="{{user.spotifyURL}}"><img src="" alt="Spotify icon"></a>
-                    <a href="{{user.youtubeChannel}}"><img src="../images/youtube.png" alt="Youtube icon"></a>
-                    <a href="{{user.facebookPage}} "><img src="" alt="Facebook icon"></a>
+                    <a href="{{user.spotifyURL}}" class="spotify-color"><img src="../images/spotify-color-logo.png" alt="Spotify icon"></a>
+                    <a href="{{user.youtubeChannel}}" class="youtube-logo"><img src="../images/youtube.png" alt="Youtube icon"></a>
+                    <a href="{{user.facebookPage}}" class="facebook"><img src="../images/facebook-logo.png" alt="Facebook icon"></a>
                 </div>
             
             </article>
 
         </div>
 
-        <div class="col-md-5 profile-events-container">
+        <div class="col-xs-12 col-md-7 user-container">
             <h3>Tus eventos</h3>
-            <a class="btn btn-dark mb-2" href="/usuario/mi-evento">Crea un nuevo evento</a>
+            <a class="btn btn-dark mb-2" href="/usuario/mi-evento">Nuevo evento</a>
             {{#each events}}
-            <article class="my-event-container">
+            <article class="user-container-items">
 
                 <hr>
                 <h5>{{title}}</h5>
