@@ -73,6 +73,11 @@ width: 20px;
   height: 100vh;
 }
 
+.event-img {
+  max-height: 350px;
+  object-fit: cover;
+}
+
 .event-page {
   padding-top: 50px
 }
