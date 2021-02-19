@@ -1,11 +1,13 @@
 # Bolo Wizard
 
-Spain's music events.
+Search music events in your city
 
 ## API's used
 
 - Ticketmaster
 - Google maps
+- Google places
+- Spotify
 
 ## Routes
 
