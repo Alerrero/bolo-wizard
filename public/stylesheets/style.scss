@@ -18,6 +18,10 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+main {
+  min-height: 100vh;
+}
+
 p {
   margin-bottom: 3px;
 }
@@ -259,7 +263,6 @@ width: 20px;
 }
 
 footer {
-  margin-top: 60px;
 }
 
 .error-message { 

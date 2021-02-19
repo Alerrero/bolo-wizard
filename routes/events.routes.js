@@ -50,7 +50,8 @@ router.get('/:city', (req, res, next) => {
             res.render('events/index', {
                 eventsObj,
                 localEvents: local,
-                city: city
+                city: city,
+                yesEvents: response.data._embedded || local[0]
             })
             
         })
@@ -75,15 +76,19 @@ router.post('/:city', (req, res, next) => {
 
     Event
         .find({$and: [{city: reg, date: {$gt: monthFirstDate, $lt: monthLastDate}}]})
+        .populate('artist')
         .then(localEvents => {
             local = localEvents
             return ticketmasterHandler.getMonthEvents(month, currentYear,lastDay, city)
         })
         .then(response => {
+            console.log(local[0])
+            console.log(response.data._embedded)
                 res.render('events/index', {
                     eventsObj: response.data._embedded ? response.data._embedded.events : null,
                     localEvents: local,
-                    city: city
+                    city: city,
+                    yesEvents: response.data._embedded || local[0]
                 })
         })
         .catch(err => next(new Error(err)))

@@ -1,8 +1,6 @@
-{{#if eventsObj}}
-
 <div class="container">
 
-    <div class="month-searchbar">    
+    <div class="month-searchbar">
         <form class="form-inline" action="/eventos/{{city}}" method="POST">
             <div class="form-group mx-sm-3 mb-2 text-center">
                 <label for="month" class="sr-only">Month</label>
@@ -26,9 +24,10 @@
         </form>
     </div>
 
+    {{#if yesEvents}}
     {{#if localEvents.[0]}}
     <h2>Eventos de nuestros artistas locales</h2>
-    {{/if}}
+
     <div class="row justify-content-center">
         {{#each localEvents}}
         <div class="col-xs-12 col-md-4 event-card local-card align-self-center">
@@ -48,10 +47,13 @@
         </div>
         {{/each}}
     </div>
-
-    {{#if eventsObj.[0]}}
-    <h2>Otros eventos</h2>
     {{/if}}
+    
+
+    
+    {{#if eventsObj}}
+    <h2>Otros eventos</h2>
+
     <div class="row justify-content-center tm-card">
         {{#each eventsObj}}
         <div class="col-xs-12 col-md-4 event-card">
@@ -63,26 +65,27 @@
         </div>
         {{/each}}
     </div>
+    {{/if}}
+    
 
-{{else}}
-<div class="row justify-content-center text-center div-wrapper d-flex align-items-center">
-    <div class="col no-events">
-        <img src="/images/search.png" alt="search icon">
-        <h3>No hay eventos en el mes seleccionado</h3>
+    {{else}}
+    <div class="row justify-content-center text-center div-wrapper d-flex align-items-center">
+        <div class="col no-events">
+            <img src="/images/search.png" alt="search icon">
+            <h3>No hay eventos en el mes seleccionado</h3>
+        </div>
     </div>
+    {{/if}}
+    
 </div>
 
 
 
-</div>
 
-
-{{/if}}
 
 
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">Subir</button>
 
-{{>footers}}
 
 <script src="/javascripts/script.js"></script>
