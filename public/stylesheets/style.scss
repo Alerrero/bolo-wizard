@@ -250,6 +250,34 @@ width: 20px;
   display: block;
 }
 
+.no-events {
+  margin: 18vh 0;
+}
+
+.no-events img {
+  width: 200px;
+}
+
 footer {
   margin-top: 60px;
 }
+
+.error-message { 
+  background-color: rgb(235, 101, 101);
+  color: white;
+  position: fixed; 
+  bottom: 10px;
+  left: 30%; 
+  width: 40%; 
+  padding: 5px 0; 
+  font-size: .9em; 
+  text-align: center; 
+  transform: translateY(calc(100% + 20px)); 
+  animation: showMessage 2s forwards;
+  border-radius: 5px;
+} 
+
+@keyframes showMessage {  0% {    transform: translateY(calc(100% + 20px));  }
+  10% {    transform: translateY(0px);  }
+  90% {    transform: translateY(0px);  }
+  100% {    transform: translateY(calc(100% + 20px));  }}

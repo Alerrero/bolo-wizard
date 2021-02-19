@@ -80,14 +80,11 @@ router.post('/:city', (req, res, next) => {
             return ticketmasterHandler.getMonthEvents(month, currentYear,lastDay, city)
         })
         .then(response => {
-            if (response.data._embedded === undefined) {res.redirect(`/eventos/${city}`)}
-            else {const eventsObj = response.data._embedded.events
                 res.render('events/index', {
-                    eventsObj,
+                    eventsObj: response.data._embedded ? response.data._embedded.events : null,
                     localEvents: local,
                     city: city
-                })}
-            
+                })
         })
         .catch(err => next(new Error(err)))
 })
