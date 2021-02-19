@@ -35,6 +35,12 @@ p {
 width: 50%
 }
 
+.month-searchbar {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .event-card {
   margin: 10px;
   padding: 10px;
@@ -127,7 +133,7 @@ width: 20px;
   background-color: red; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
+  padding: 5px 15px; /* Some padding */
   border-radius: 10px; /* Rounded corners */
   font-size: 18px; /* Increase font size */
 }
@@ -135,8 +141,6 @@ width: 20px;
 #myBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
-
-// ESTILOS VERO
 
 .profile {
   margin-top: 30px;
@@ -246,6 +250,6 @@ width: 20px;
   display: block;
 }
 
-p {
-  margin: 3px;
+footer {
+  margin-top: 60px;
 }
