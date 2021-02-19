@@ -32,17 +32,29 @@
                 {{/each}}
 
                 <h5>Links:</h5>
-                {{#if localEvent.artist.facebookPage}}
-                <a href="{{localEvent.artist.facebookPage}}"><img src="/images/facebook-logo.png"
-                        alt="Facebook logo"></a>
-                {{/if}}
-                {{#if localEvent.artist.spotifyURL}}
-                <a href="{{localEvent.artist.facebookPage}}"><img src="/images/spotify-logo.png" alt="Spotify logo"></a>
-                {{/if}}
-                {{#if localEvent.artist.youtubeChannel}}
-                <a href="{{localEvent.artist.youtubeChannel}}"><img src="/images/youtube-logo.png"
-                        alt="Youtube logo"></a>
-                {{/if}}
+                <div class="row">
+                    {{#if localEvent.artist.facebookPage}}
+                    <div class="col-4">
+                        <a href="{{localEvent.artist.facebookPage}}"><img src="/images/facebook-logo.png"
+                                alt="Facebook logo"></a>
+                    </div>
+
+                    {{/if}}
+                    {{#if localEvent.artist.spotifyURL}}
+                    <div class="col-4">
+                        <a href="{{localEvent.artist.facebookPage}}"><img src="/images/spotify-logo.png"
+                                alt="Spotify logo"></a>
+                    </div>
+
+                    {{/if}}
+                    {{#if localEvent.artist.youtubeChannel}}
+                    <div class="col-4">
+                        <a href="{{localEvent.artist.youtubeChannel}}"><img src="/images/youtube-logo.png"
+                                alt="Youtube logo"></a>
+                    </div>
+
+                    {{/if}}
+                </div>
 
             </div>
         </div>
