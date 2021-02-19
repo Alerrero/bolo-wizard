@@ -10,7 +10,7 @@ const { removeDups, normalizeText } = require('../utils')
 
 
 // Endpoints
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
 
     let localCities = []
 
@@ -35,10 +35,7 @@ router.get('/', (req, res) => {
 
             res.render('index', { finalCities })
         })
-
-
-
-.catch(err => console.log('Error:', err))
+        .catch(err => next(new Error(err)))
 
 })
 router.post('/', (req, res) => {

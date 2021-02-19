@@ -59,7 +59,7 @@ module.exports = app => {
                         return next(null, user);
                     })
             }})
-            .catch(err => console.log(err))
+            .catch(err => next(new Error(err)))
     }))
 
     app.use(passport.initialize())

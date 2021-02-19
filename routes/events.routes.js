@@ -13,10 +13,9 @@ var spotifyApi = new SpotifyWebApi({
 spotifyApi
     .clientCredentialsGrant()
     .then(data => spotifyApi.setAccessToken(data.body['access_token']))
-    .catch(error => console.log('Something went wrong when retrieving an access token', error));
+    .catch(err => next(new Error(err)))
 
 const Event = require('../models/events.model')
-const Artist = require('../models/artist.model')
 
 
 const ticketmasterHandler = new TicketmasterAPI()
@@ -26,7 +25,7 @@ const { normalizeText } = require('../utils')
 
 // Events list
 
-router.get('/:city', (req, res) => {
+router.get('/:city', (req, res, next) => {
 
     let local
     const city = req.params.city
@@ -55,10 +54,10 @@ router.get('/:city', (req, res) => {
             })
             
         })
-        .catch(err => console.log('Error:', err))
+        .catch(err => next(new Error(err)))
 })
 
-router.post('/:city', (req, res) => {
+router.post('/:city', (req, res, next) => {
     
     const city = req.params.city
     const today = new Date()
@@ -90,7 +89,7 @@ router.post('/:city', (req, res) => {
                 })}
             
         })
-        .catch(err => console.log('Error:', err))
+        .catch(err => next(new Error(err)))
 })
 
 // Details
@@ -138,7 +137,7 @@ router.get('/detalles/:_id', (req, res, next) => {
                 normCity
             })
         })
-        .catch(err => console.log('Error:', err))
+        .catch(err => next(new Error(err)))
 })
 
 //Local events details
@@ -167,7 +166,7 @@ router.get('/locales-detalles/:_id', (req, res, next) => {
             })
         })
 
-        .catch(err => console.log('Error:', err))
+        .catch(err => next(new Error(err)))
         })
 
 
