@@ -1,6 +1,7 @@
 # Bolo Wizard
 
-Search music events in your city
+Search music events in your city.
+
 
 ## API's used
 
@@ -8,6 +9,25 @@ Search music events in your city
 - Google maps
 - Google places
 - Spotify
+
+## Features
+
+- Search music events by city and filter by date using Ticketmaster API
+- Search local events created by bands and music artists registered in our app
+- Hear the artists music befored buying tickets or attending the concert with Spotify API
+- See the music event location with the Google Maps API
+- Admin page in which the admin can approve or dismiss new registered artists
+
+## Site
+
+- Landing page where you can search music events by city
+![bolowizard](https://user-images.githubusercontent.com/75569696/111182835-99bcf280-85af-11eb-9632-875bad09595a.png)
+
+- List of events page, where there is an additional date filter
+![events-list](https://user-images.githubusercontent.com/75569696/111182723-7b56f700-85af-11eb-8db2-80d5a4f08021.png)
+
+- Details of selected event
+![event-details](https://user-images.githubusercontent.com/75569696/111182704-74c87f80-85af-11eb-922b-57254065836f.png)
 
 ## Routes
 
