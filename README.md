@@ -2,6 +2,9 @@
 
 Search music events in your city.
 
+Bolo Wizard is a web application that allows users to find music events close to them, either posted by local artists registered to the platform or imported through the Ticketmaster API. Another added functionality is being able to hear the artist or band's music through the Spotify API to get to know them before deciding to attend the event (useful for little-known local artists events).
+
+
 ## Technologies
 
 - Node.js
@@ -41,7 +44,7 @@ Search music events in your city.
 | ------------- | ------------- | ------------- |
 | `/`  | GET  | City selection  |
 | `/`  | POST  | Send city data  |
-| `/eventos/:city`  | GET  | Events list bu city  |
+| `/eventos/:city`  | GET  | Events list by city  |
 | `eventor/:city`   | POST | Filter by month
 | `/eventos/detalles/:_id`  | GET  | See details of the Ticketmaster event and map location  |
 | `/eventos/locales-detalles/:_id`  | GET  | See details of the DB event and map location  |
