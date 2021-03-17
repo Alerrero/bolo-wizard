@@ -2,6 +2,12 @@
 
 Search music events in your city.
 
+## Technologies
+
+- Node.js
+- Express.js
+- MongoDB
+- HBS
 
 ## API's used
 
