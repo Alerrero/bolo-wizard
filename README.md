@@ -67,7 +67,10 @@ Bolo Wizard is a web application that allows users to find music events close to
 | `api/events`  | GET  | Events JSON  |
 
 
+## Authors
 
+- Verónica Alcalá Vera | [GitHub profile](https://github.com/valcalav) | [LinkedIn](https://www.linkedin.com/in/veronicaalcalav/)
+- Alejandro Herrero Lorente | [GitHub profile](https://github.com/Alerrero) | [LinkedIn](https://www.linkedin.com/in/alejandro-hl/)
 
 
 
