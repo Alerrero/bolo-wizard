@@ -27,6 +27,10 @@ Bolo Wizard is a web application that allows users to find music events close to
 - See the music event location with the Google Maps API
 - Admin page in which the admin can approve or dismiss new registered artists
 
+## Demo
+
+https://bolo-wizard.herokuapp.com/
+
 ## Site
 
 - Landing page where you can search music events by city
